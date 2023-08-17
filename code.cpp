@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
 
@@ -40,7 +39,6 @@ public:
                     train.totalSeats -= numSeats;
                     reservations.emplace_back(trainNumber, numSeats, passengerName);
                     std::cout << "Ticket booked successfully!\n";
-                    saveBookingToFile(trainNumber, numSeats, passengerName);
                     return;
                 } else {
                     std::cout << "Not enough seats available on this train.\n";
@@ -49,17 +47,6 @@ public:
             }
         }
         std::cout << "Train not found.\n";
-    }
-
-    void saveBookingToFile(int trainNumber, int numSeats, const std::string& passengerName) {
-        std::ofstream bookingFile("C:\\Users\\mahim\\OneDrive\\Desktop\\New folder\\railway reservation\\bookings", std::ios::app);
-        if (bookingFile.is_open()) {
-            bookingFile << "Train Number: " << trainNumber << "\tSeats: " << numSeats << "\tPassenger: " << passengerName << "\n";
-            bookingFile.close();
-            std::cout << "Booking information saved to bookings.txt.\n";
-        } else {
-            std::cout << "Unable to open bookings.txt for writing.\n";
-        }
     }
 
     void displayTrains() {
